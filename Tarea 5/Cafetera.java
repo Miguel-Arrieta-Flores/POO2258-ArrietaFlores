@@ -31,7 +31,7 @@ public class Cafetera {
     }
 
     public void setDepositoAgua(int depositoAgua) {
-        if (depositoAgua<=5000 && depositoAgua<=0) {
+        if (depositoAgua<=5000 && depositoAgua>=0) {
             this.depositoAgua = depositoAgua;
         }
         else {
@@ -44,7 +44,7 @@ public class Cafetera {
     }
 
     public void setDepositoCafe(int depositoCafe) {
-        if (depositoCafe<=1000 && depositoCafe<=0) {
+        if (depositoCafe<=1000 && depositoCafe>=0) {
             this.depositoCafe = depositoCafe;
         }
         else {
@@ -57,7 +57,7 @@ public class Cafetera {
     }
 
     public void setDepositoCrema(int depositoCrema) {
-        if (depositoCrema<=1500 && depositoCrema<=0) {
+        if (depositoCrema<=1500 && depositoCrema>=0) {
             this.depositoCrema = depositoCrema;
         }
         else {
@@ -70,7 +70,7 @@ public class Cafetera {
     }
 
     public void setCantidadVasos(int cantidadVasos) {
-        if (cantidadVasos<=50 && cantidadVasos<=0) {
+        if (cantidadVasos<=50 && cantidadVasos>=0) {
             this.cantidadVasos = cantidadVasos;
         } else {
             System.out.println("Cantidad no permitida");
