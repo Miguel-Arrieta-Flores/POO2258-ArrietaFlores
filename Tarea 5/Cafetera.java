@@ -167,42 +167,43 @@ public class Cafetera {
         }
     }
 
-    //Prepara Café americano con respecto a la cantidad de cafés que ingreses
-    public void prepararAmericano(int cantidad){
+    //El método que prepara los tipos de cafés
+    private void prepararCafe(int agua,int cafe, int crema, int vasos, String nombre){
         if (encendido==true) {
-            if (depositoAgua>=150 && depositoCafe>=15 && cantidadVasos>0){
+            if (depositoAgua>=agua && depositoCafe>=cafe && depositoCrema>=crema && cantidadVasos>0){
                 boolean capacidad = true;
-                for (int i = 0; i < cantidad; i++) {
-                    if(depositoAgua>=150 && depositoCafe>=15 && cantidadVasos>0){
-                        depositoAgua-=150;
-                        depositoCafe-=15;
+                for (int i = 0; i < vasos; i++) {
+                    if(depositoAgua>=agua && depositoCafe>=cafe && depositoCrema>=crema && cantidadVasos>0){
+                        depositoAgua-=agua;
+                        depositoCafe-=cafe;
+                        depositoCrema-=crema;
                         cantidadVasos-=1;
                     }
                     else {
                         //Ya que la cantidad que ingresó no se pude realizar, le pregunta si se le prepara solo máximo posible
-                        System.out.println("No hay recursos suficientes para " + cantidad + " cafés");
-                        System.out.println("Solo alcanza para " + i + " Cafés Americanos");
+                        System.out.println("No hay recursos suficientes para " + vasos + " cafés");
+                        System.out.println("Solo alcanza para " + i + " Cafés "+ nombre);
                         System.out.println("¿Los quiere? s/n");
                         Scanner sc = new Scanner(System.in);
                         char res = sc.next().charAt(0);
                         if (res != 'n') {
-                            System.out.println("Ya están tus " + i + " Cafés Americanos");
+                            System.out.println("Ya están tus " + i + " Cafés "+ nombre);
                             evaluarRecursos();
                         }
-                        i = cantidad;
+                        i = vasos;
                         capacidad = false;
                     }
                 }
-                if (cantidad==1){
-                    System.out.println("Ya está tu Americanos");
+                if (vasos==1){
+                    System.out.println("Ya está tu "+ nombre.substring(0,nombre.length()-1));
                     evaluarRecursos();
                 }
-                else if(cantidad<1) {
-                    System.out.println("Seleccionó 0 Americanos");
+                else if(vasos<1) {
+                    System.out.println("Seleccionó 0 "+nombre);
                     evaluarRecursos();
                 }
                 else if (capacidad == true) {
-                    System.out.println("Ya están tus " + cantidad + " Americanos");
+                    System.out.println("Ya están tus " + vasos +" "+nombre);
                     evaluarRecursos();
                 }
             }
@@ -214,104 +215,20 @@ public class Cafetera {
         else {
             System.out.println("Tienes que encender primero la cafetera");
         }
+    }
+
+    //Prepara Café americano con respecto a la cantidad de cafés que ingreses
+    public void prepararAmericano(int cantidad){
+        prepararCafe(180,15,0,cantidad,"Americanos");
     }
 
     //Prepara Café expreso con respecto a la cantidad de cafés que ingreses
     public void prepararExpreso(int cantidad){
-        if (encendido==true) {
-            if (depositoAgua >= 120 && depositoCafe >= 20 && cantidadVasos > 0) {
-                boolean capacidad = true;
-                for (int i = 0; i < cantidad; i++) {
-                    if (depositoAgua >= 120 && depositoCafe >= 20 && cantidadVasos > 0) {
-                        depositoAgua -= 120;
-                        depositoCafe -= 20;
-                        cantidadVasos -= 1;
-                    }
-                    else {
-                        //Ya que la cantidad que ingresó no se pude realizar, le pregunta si se le prepara solo máximo posible
-                        System.out.println("No hay recursos suficientes para " + cantidad + " cafés");
-                        System.out.println("Solo alcanza para " + i + " Cafés Expresos");
-                        System.out.println("¿Los quiere? s/n");
-                        Scanner sc = new Scanner(System.in);
-                        char res = sc.next().charAt(0);
-                        if (res != 'n') {
-                            System.out.println("Ya están tus " + i + " Cafés Expresos");
-                            evaluarRecursos();
-                        }
-                        i = cantidad;
-                        capacidad = false;
-                    }
-                }
-                if (cantidad == 1) {
-                    System.out.println("Ya está tu Expreso");
-                    evaluarRecursos();
-                }
-                else if (cantidad < 1) {
-                    System.out.println("Seleccionó 0 Expresos");
-                    evaluarRecursos();
-                }
-                else if (capacidad == true) {
-                    System.out.println("Ya están tus " + cantidad + " Expresos");
-                    evaluarRecursos();
-                }
-            }
-            else {
-                System.out.println("No hay recursos suficientes");
-                revisarRecursos();
-            }
-        }
-        else {
-            System.out.println("Tienes que encender primero la cafetera");
-        }
+        prepararCafe(120,20,0,cantidad,"Expresos");
     }
 
     //Prepara Café capuchino con respecto a la cantidad de cafés que ingreses
     public void prepararCapuchino(int cantidad){
-        if (encendido==true) {
-            if (depositoAgua>=100 && depositoCafe>=14 && depositoCrema>=70 && cantidadVasos>0) {
-                boolean capacidad = true;
-                for (int i = 0; i < cantidad; i++) {
-                    if (depositoAgua>=100 && depositoCafe>=14 && depositoCrema>=70 && cantidadVasos>0) {
-                        depositoAgua-=100;
-                        depositoCafe-=14;
-                        depositoCrema-=70;
-                        cantidadVasos-=1;
-                    }
-                    else {
-                        //Ya que la cantidad que ingresó no se pude realizar, le pregunta si se le prepara solo máximo posible
-                        System.out.println("No hay recursos suficientes para " + cantidad + " cafés");
-                        System.out.println("Solo alcanza para " + i + " Cafés Capuchinos");
-                        System.out.println("¿Los quiere? s/n");
-                        Scanner sc = new Scanner(System.in);
-                        char res = sc.next().charAt(0);
-                        if (res != 'n') {
-                            System.out.println("Ya están tus " + i + " Cafés Capuchinos");
-                            evaluarRecursos();
-                        }
-                        i = cantidad;
-                        capacidad = false;
-                    }
-                }
-                if (cantidad==1){
-                    System.out.println("Ya está tu Capuchino");
-                    evaluarRecursos();
-                }
-                else if(cantidad<1){
-                    System.out.println("Seleccionó 0 Capuchinos");
-                    evaluarRecursos();
-                }
-                else if (capacidad == true) {
-                    System.out.println("Ya están tus " + cantidad + " Capuchinos");
-                    evaluarRecursos();
-                }
-            }
-            else {
-                System.out.println("No hay recursos suficientes");
-                revisarRecursos();
-            }
-        }
-        else {
-            System.out.println("Tienes que encender primero la cafetera");
-        }
+        prepararCafe(100,14, 70,cantidad,"Capuchinos");
     }
 }
